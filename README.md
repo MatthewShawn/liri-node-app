@@ -11,3 +11,10 @@ Next to do:
 4.  Make a switch statement for each.
 5.  Put it all together.
 6.  Review the requirements.
+
+Spotify client ID: 9ed84d12279643daa5949d5edc89ba11
+Client Secret: 532dc64825c14be9afb04a464566b693
+
+OMDBApi key:  24355945
+ http://www.omdbapi.com/?i=tt3896198&apikey=24355945
+ I do not know what the ?i=tt... crap is
