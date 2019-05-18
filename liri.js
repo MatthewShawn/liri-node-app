@@ -1,13 +1,15 @@
-var Spotify = require('node-spotify-api');
-var keys = require("./keys.js");
 require("dotenv").config();
+var keys = require("./keys.js");
+var Spotify = require('node-spotify-api');
+
+
 var axios = require("axios");
-var spotify = new spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
 //var bandsintown = require('bandsintown')(APP_ID);
 var fs = require("fs"); // filesystem   It does not need to be "npm install"ed
 
 var cmd = process.argv[2];
-var args = process.slice(3).join(" ");
+var args = process.argv.slice(3).join(" ");
 
 
 //----------OR----------------
@@ -16,7 +18,10 @@ var spotifyThisSong = function() {
         spotify
             .search({ type: 'track', query: args })
             .then(function(response) {
-                console.log(response);
+                console.log(response.tracks.items[0].artists[0].name);
+                console.log(response.tracks.items[0].name);
+                console.log(response.tracks.items[0].preview_url);
+                console.log(response.tracks.items[0].album.name);
             })
             .catch(function(err) {
                 console.log(err);
@@ -55,13 +60,13 @@ var doWhatItSays = function() {
             console.log(error);
             return;
         }
-    });
-    var line = stuff.split(",");
-    cmd = line[0];
-    args = line[1]; //I think I can get away with this, since it is in quotes.
-    //I would need to re-use slice like I do on the command line otherwise
-    runSwitch();
 
+        var line = stuff.split(",");
+        cmd = line[0];
+        args = line[1]; //I think I can get away with this, since it is in quotes.
+        //I would need to re-use slice like I do on the command line otherwise
+        runSwitch();
+    });
 }
 
 var runSwitch = function() {
