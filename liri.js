@@ -33,7 +33,12 @@ var spotifyThisSong = function() {
 var concertThis = function() {
     axios.get("https://rest.bandsintown.com/artists/" + args + "/events?app_id=codingbootcamp")
         .then(function(response) {
-            console.log(response);
+            var barf = response.data;
+            console.log(barf[0].venue.name);
+            console.log(barf[0].venue.country);
+            console.log(barf[0].city);
+            console.log(barf[0].datetime);
+
         })
         .catch(function(error) {
             console.log(error);
@@ -45,10 +50,28 @@ var movieThis = function() {
     var queryUrl = "http://www.omdbapi.com/?t=" + args + "&y=&plot=short&apikey=24355945";
 
     // We then run the request with axios module on a URL with a JSON
-    axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
+    //axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
+    axios.get(queryUrl).then(
         function(response) {
+            var movieSpew = response.data;
+            //console.log(movieSpew);
+            console.log(movieSpew.Title);
+            console.log(movieSpew.Year);
+            for (var idx = 0; idx < movieSpew.Ratings.length; idx++) {
+                if (movieSpew.Ratings[idx].Source === "Rotten Tomatoes" ||
+                    movieSpew.Ratings[idx].Source === "Internet Movie Database") {
+                    console.log(movieSpew.Ratings[idx].Source + "  " + movieSpew.Ratings[idx].Value);
+                }
+            }
+            //console.log(movieSpew.Ratings)
+            //console.log(findElement(movieSpew.Ratings, "Source", "Internet Movie Database")["Value"]);
+            //console.log(movieSpew.Ratings["Rotten Tomatoes"].Value);
+            console.log(movieSpew.Country);
+            console.log(movieSpew.Language);
+            console.log(movieSpew.Plot);
+            console.log(movieSpew.Actors);
             // Then we print out the imdbRating
-            console.log("The movie's rating is: " + response.data.imdbRating);
+            //console.log("The movie's rating is: " + response.data.imdbRating);
         }
     );
 }
