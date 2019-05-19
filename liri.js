@@ -7,10 +7,20 @@ var axios = require("axios");
 var spotify = new Spotify(keys.spotify);
 //var bandsintown = require('bandsintown')(APP_ID);
 var fs = require("fs"); // filesystem   It does not need to be "npm install"ed
+var moment = require("moment");
 
 var cmd = process.argv[2];
 var args = process.argv.slice(3).join(" ");
 
+// Append the command to the conversation log
+// At this time, I am only logging the request commands.
+// I could add the same type of logging for each output set,
+// but I want to think about it first...and this code is due.
+// Maybe later.
+fs.appendFile("convo.txt", cmd + " " + args + "\n\n", function(err) {
+    if (err) throw err;
+    //console.log();
+});
 
 //----------OR----------------
 // artist, album, or track are the types
@@ -35,9 +45,9 @@ var concertThis = function() {
         .then(function(response) {
             var barf = response.data;
             console.log(barf[0].venue.name);
-            console.log(barf[0].venue.country);
-            console.log(barf[0].city);
-            console.log(barf[0].datetime);
+            console.log(barf[0].venue.city + ", " + barf[0].venue.country);
+            //console.log(barf[0].city);
+            console.log(moment(barf[0].datetime).format("MM/DD/YYYY"));
 
         })
         .catch(function(error) {
