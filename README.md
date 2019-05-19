@@ -12,9 +12,12 @@ Next to do:
 5.  Put it all together.
 6.  Review the requirements.
 
-Spotify client ID: 9ed84d12279643daa5949d5edc89ba11
-Client Secret: 532dc64825c14be9afb04a464566b693
+As a user, please note that the input for the song/movie/band does NOT
+need to be quoted for this to work.  In fact, quotes may foul things up.
 
-OMDBApi key:  24355945
- http://www.omdbapi.com/?i=tt3896198&apikey=24355945
- I do not know what the ?i=tt... crap is
+The silly issue with wasting time trying to get and APP_ID from 
+bandsintown could have been avoided with as statement in the directions
+indicating that I should NOT try to get one from the site.  The directions
+gave me mixed messages that cost me many hours.
+
+Evan needs a banjo.
